@@ -1,4 +1,4 @@
-package br.com.sacramental.dominio;
+package br.com.sacramental.dto;
 
 public class JwtRequest {
 

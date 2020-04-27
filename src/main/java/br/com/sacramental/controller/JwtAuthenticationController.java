@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.sacramental.dominio.JwtRequest;
-import br.com.sacramental.dominio.JwtResponse;
+import br.com.sacramental.dto.JwtRequest;
+import br.com.sacramental.dto.JwtResponse;
 import br.com.sacramental.token.JwtTokenUtil;
 
 @RestController
