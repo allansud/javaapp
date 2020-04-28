@@ -27,4 +27,4 @@ bin
 .settings
 .classpath
 .vscode
-
+.factorypath

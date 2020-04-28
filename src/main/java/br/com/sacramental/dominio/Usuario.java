@@ -3,32 +3,31 @@ package br.com.sacramental.dominio;
 import java.util.Collection;
 import java.util.Date;
 
-import org.springframework.data.mongodb.core.mapping.MongoId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+public class Usuario implements UserDetails {
 
-public class Usuario implements UserDetails{
+    /**
+     *
+     */
+    private static final long serialVersionUID = -5135251972124721972L;
+    @Id
+    private final Long id;
+    private final String userName;
+    private final String firstName;
+    private final String lastName;
+    private final String password;
+    private final String email;
+    private final Collection<? extends GrantedAuthority> authorities;
+    private final boolean enabled;
+    private final Date lastPasswordResetDate;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	@MongoId
-	private final Long id;
-	private final String userName;
-	private final String firstName;
-	private final String lastName;
-	private final String password;
-	private final String email;
-	private final Collection<? extends GrantedAuthority> authorities;
-	private final boolean enabled;
-	private final Date lastPasswordResetDate;
-
-	public Usuario(Long id, String username, String firstname, String lastname, String email, String password,
-			Collection<? extends GrantedAuthority> authorities, boolean enabled, Date lastPasswordResetDate) {
+    public Usuario(Long id, String username, String firstname, String lastname, String email, String password,
+            Collection<? extends GrantedAuthority> authorities, boolean enabled, Date lastPasswordResetDate) {
         this.id = id;
         this.userName = username;
         this.firstName = firstname;
@@ -38,7 +37,7 @@ public class Usuario implements UserDetails{
         this.authorities = authorities;
         this.enabled = enabled;
         this.lastPasswordResetDate = lastPasswordResetDate;
-	}
+    }
 
     @JsonIgnore
     public Long getId() {

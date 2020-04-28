@@ -1,10 +1,10 @@
 package br.com.sacramental.dominio;
 
-import org.springframework.data.mongodb.core.mapping.MongoId;
+import org.springframework.data.annotation.Id;
 
 public class Role {
 
-	@MongoId
+	@Id
 	private Long id;
 
 	private String RoleName;

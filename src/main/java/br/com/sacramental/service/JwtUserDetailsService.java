@@ -2,6 +2,7 @@ package br.com.sacramental.service;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,11 +16,8 @@ import br.com.sacramental.repository.UsuarioRepository;
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
+	@Autowired
 	private UsuarioRepository usuarioRepository;
-
-	public JwtUserDetailsService(UsuarioRepository repository) {
-		this.usuarioRepository = repository;
-	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
