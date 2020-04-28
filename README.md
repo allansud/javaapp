@@ -5,7 +5,7 @@
 ## Pré-requisitos
 
 * Eclipse
-* [Java 11](https://aws.amazon.com/pt/corretto/
+* [Java 11](https://aws.amazon.com/pt/corretto/)
 * Mongodb
 * Maven
 
