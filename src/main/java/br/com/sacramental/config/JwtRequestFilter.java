@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import br.com.sacramental.service.JwtUserDetailsService;
 import br.com.sacramental.token.JwtTokenUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 

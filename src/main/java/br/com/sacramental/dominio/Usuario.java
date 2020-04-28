@@ -1,54 +1,103 @@
 package br.com.sacramental.dominio;
 
-import org.springframework.data.annotation.Id;
+import java.util.Collection;
+import java.util.Date;
 
-public class Usuario {
+import org.springframework.data.mongodb.core.mapping.MongoId;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-	@Id
-	private String id;
-	private String nome;
-	private String sobreNome;
-	private String email;
-	private String Senha;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+public class Usuario implements UserDetails{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
-	public Usuario (String id, String nome, String sobreNome, String email, String senha) {
-		this.email = email;
-		this.id = id;
-		this.nome = nome;
-		this.Senha = senha;
-		this.sobreNome = sobreNome;
+	@MongoId
+	private final Long id;
+	private final String userName;
+	private final String firstName;
+	private final String lastName;
+	private final String password;
+	private final String email;
+	private final Collection<? extends GrantedAuthority> authorities;
+	private final boolean enabled;
+	private final Date lastPasswordResetDate;
+
+	public Usuario(Long id, String username, String firstname, String lastname, String email, String password,
+			Collection<? extends GrantedAuthority> authorities, boolean enabled, Date lastPasswordResetDate) {
+        this.id = id;
+        this.userName = username;
+        this.firstName = firstname;
+        this.lastName = lastname;
+        this.email = email;
+        this.password = password;
+        this.authorities = authorities;
+        this.enabled = enabled;
+        this.lastPasswordResetDate = lastPasswordResetDate;
 	}
-	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getSobreNome() {
-		return sobreNome;
-	}
-	public void setSobreNome(String sobreNome) {
-		this.sobreNome = sobreNome;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getSenha() {
-		return Senha;
-	}
-	public void setSenha(String senha) {
-		Senha = senha;
-	}
-	
-	
+
+    @JsonIgnore
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String getUsername() {
+        return userName;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    public String getFirstname() {
+        return firstName;
+    }
+
+    public String getLastname() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    @JsonIgnore
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    @JsonIgnore
+    public Date getLastPasswordResetDate() {
+        return lastPasswordResetDate;
+    }
 }

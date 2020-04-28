@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.sacramental.dto.JwtRequest;
 import br.com.sacramental.dto.JwtResponse;
+import br.com.sacramental.service.JwtUserDetailsService;
 import br.com.sacramental.token.JwtTokenUtil;
 
 @RestController
@@ -23,6 +24,7 @@ public class JwtAuthenticationController {
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 	
