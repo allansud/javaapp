@@ -36,7 +36,7 @@ public class JwtUserDto implements UserDetails {
 		this.enabled = enabled;
 		this.lastPasswordResetDate = lastPasswordResetDate;
 	}
-
+	
 	@JsonIgnore
 	public Long getId() {
 		return id;

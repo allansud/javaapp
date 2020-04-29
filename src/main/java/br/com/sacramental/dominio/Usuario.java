@@ -1,102 +1,76 @@
 package br.com.sacramental.dominio;
 
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+public class Usuario {
 
-public class Usuario implements UserDetails {
+	@MongoId
+	private Long id;
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = -5135251972124721972L;
-    @Id
-    private final Long id;
-    private final String userName;
-    private final String firstName;
-    private final String lastName;
-    private final String password;
-    private final String email;
-    private final Collection<? extends GrantedAuthority> authorities;
-    private final boolean enabled;
-    private final Date lastPasswordResetDate;
+	private String username;
 
-    public Usuario(Long id, String username, String firstname, String lastname, String email, String password,
-            Collection<? extends GrantedAuthority> authorities, boolean enabled, Date lastPasswordResetDate) {
-        this.id = id;
-        this.userName = username;
-        this.firstName = firstname;
-        this.lastName = lastname;
-        this.email = email;
-        this.password = password;
-        this.authorities = authorities;
-        this.enabled = enabled;
-        this.lastPasswordResetDate = lastPasswordResetDate;
-    }
+	private String password;
 
-    @JsonIgnore
-    public Long getId() {
-        return id;
-    }
+	private String firstName;
 
-    @Override
-    public String getUsername() {
-        return userName;
-    }
+	private String lastName;
 
-    @JsonIgnore
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+	private String email;
 
-    @JsonIgnore
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+	private Boolean enabled;
 
-    @JsonIgnore
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+	private Date lastPasswordResetDate;
 
-    public String getFirstname() {
-        return firstName;
-    }
+	private List<Role> roles;
 
-    public String getLastname() {
-        return lastName;
-    }
+	public Usuario(Long id, String username, String firstname, String lastname, String email, String password,
+			List<Role> roles, boolean enabled, Date lastPasswordResetDate) {
+		this.id = id;
+		this.username = username;
+		this.firstName = firstname;
+		this.lastName = lastname;
+		this.email = email;
+		this.password = password;
+		this.enabled = enabled;
+		this.lastPasswordResetDate = lastPasswordResetDate;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    @JsonIgnore
-    @Override
-    public String getPassword() {
-        return password;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
+	public String getFirstname() {
+		return firstName;
+	}
 
-    @JsonIgnore
-    public Date getLastPasswordResetDate() {
-        return lastPasswordResetDate;
-    }
+	public String getLastname() {
+		return lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public Date getLastPasswordResetDate() {
+		return lastPasswordResetDate;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
 }

@@ -8,7 +8,7 @@ import br.com.sacramental.dominio.Usuario;
 
 public interface UsuarioRepository extends MongoRepository<Usuario, String>{
 	
-	public Usuario findByFirstName(String firstName);
-	public List<Usuario> findByLastName(String lastName);
-	public Usuario findByUsername(String userName);
+	Usuario findByFirstName(String firstname);
+	List<Usuario> findByLastName(String lastname);
+	Usuario findByUsername(String username);
 }
