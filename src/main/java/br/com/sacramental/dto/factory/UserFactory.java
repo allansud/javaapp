@@ -10,17 +10,19 @@ import br.com.sacramental.dominio.Usuario;
 import br.com.sacramental.dto.JwtUserDto;
 
 public class UserFactory {
-	
-	private UserFactory() { }
-	
+
+	private UserFactory() {
+	}
+
 	public static Usuario create(JwtUserDto user) {
 		return new Usuario(user.getId(), user.getUsername(), user.getFirstname(), user.getLastname(), user.getEmail(),
 				user.getPassword(), mapToGrantedAuthorities(user.getAuthorities()), user.isEnabled(),
 				user.getLastPasswordResetDate());
 	}
-	
+
 	private static List<Role> mapToGrantedAuthorities(Collection<? extends GrantedAuthority> roles) {
-		return roles.stream().map(role -> new Role(role.getAuthority()))
-				.collect(Collectors.toList());
+		if (roles != null)
+			roles.stream().map(role -> new Role(role.getAuthority())).collect(Collectors.toList());
+		return null;
 	}
 }

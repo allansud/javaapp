@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 public class Usuario {
 
 	@MongoId
-	private Long id;
+	private String id;
 
 	private String username;
 
@@ -26,7 +26,7 @@ public class Usuario {
 
 	private List<Role> roles;
 
-	public Usuario(Long id, String username, String firstname, String lastname, String email, String password,
+	public Usuario(String id, String username, String firstname, String lastname, String email, String password,
 			List<Role> roles, boolean enabled, Date lastPasswordResetDate) {
 		this.id = id;
 		this.username = username;
@@ -38,7 +38,7 @@ public class Usuario {
 		this.lastPasswordResetDate = lastPasswordResetDate;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 

@@ -6,7 +6,10 @@ import java.util.Date;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 public class JwtUserDto implements UserDetails {
 	/**
@@ -14,17 +17,17 @@ public class JwtUserDto implements UserDetails {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private final Long id;
-	private final String username;
-	private final String firstname;
-	private final String lastname;
-	private final String password;
-	private final String email;
-	private final Collection<? extends GrantedAuthority> authorities;
-	private final boolean enabled;
-	private final Date lastPasswordResetDate;
+	private String id;
+	private String username;
+	private String firstname;
+	private String lastname;
+	private String password;
+	private String email;
+	private Collection<? extends GrantedAuthority> authorities;
+	private boolean enabled;
+	private Date lastPasswordResetDate;
 
-	public JwtUserDto(Long id, String username, String firstname, String lastname, String email, String password,
+	public JwtUserDto(String id, String username, String firstname, String lastname, String email, String password,
 			Collection<? extends GrantedAuthority> authorities, boolean enabled, Date lastPasswordResetDate) {
 		this.id = id;
 		this.username = username;
@@ -35,10 +38,15 @@ public class JwtUserDto implements UserDetails {
 		this.authorities = authorities;
 		this.enabled = enabled;
 		this.lastPasswordResetDate = lastPasswordResetDate;
-	}
+	}	
 	
+	@JsonProperty(access = Access.READ_ONLY)
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@JsonIgnore
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -92,7 +100,8 @@ public class JwtUserDto implements UserDetails {
 	public boolean isEnabled() {
 		return enabled;
 	}
-
+	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@JsonIgnore
 	public Date getLastPasswordResetDate() {
 		return lastPasswordResetDate;
